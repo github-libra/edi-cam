@@ -108,14 +108,14 @@ If the download doesn't work, the release link may have changed. Check [here](ht
 
 #### Installing Node.js packages
 
-* Navigate to `web/server`.
+* Navigate to `web/robotjs`.
 * Install the Node.js packages by typing `npm install`.
 
 ### Running the demo
 
 #### Updating the WebSocket address
 
-Modify `wsUrl` in `web/client/index.html`. The section of the code looks like this:
+Modify `wsUrl` in `web/robotjs/client/index.html`. The section of the code looks like this:
 
     // CHANGE THIS TO THE APPROPRIATE WS ADDRESS
     var wsUrl = 'ws://myedison.local:8084/';
@@ -124,7 +124,7 @@ Replace `myedison` with the name of your Edison.
 
 #### Running the Node.js server
 
-* Navigate to `web/server`.
+* Navigate to `web/robotjs`.
 * Run the server by typing `node server.js`.
 
 The Node.js server should now be running. The console will look something like this:
@@ -132,7 +132,7 @@ The Node.js server should now be running. The console will look something like t
     WebSocket server listening on port 8084
     HTTP server listening on port 8080
     Listening for video stream on port 8082
-    Stream Connected: 127.0.0.1:52995 size: 320x240
+    Stream Connected: 127.0.0.1:52995 size: 640x480
 
 #### Viewing the video stream
 
