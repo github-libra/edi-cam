@@ -137,3 +137,38 @@ The Node.js server should now be running. The console will look something like t
 #### Viewing the video stream
 
 Open a browser window and navigate to `http://myedison.local:8080`, where `myedison` is the name of your Edison. You should now see the video stream from your webcam!
+
+#### Auto Start Node App
+
+Check folder /etc/systemd/system:
+
+ls -l /etc/systemd/system/*.service
+there are few System Service Manager configuration files with .services extension
+
+For example I will use openautomation service, please rename your file accordingly. Create a service config file /etc/systemd/system/edi-cam.service with structure like this:
+
+  [Unit]
+  Description=Open Automation Service
+  After=network.service
+
+  [Service]
+  ExecStart=/bin/sh -c "/usr/bin/node /home/root/edi-cam/web/robotjs/server.js"
+  WorkingDirectory=/home/root/edi-cam/web/robotjs/node_modules/
+  Restart=always
+  RestartSec=5s
+
+  [Install]
+  WantedBy=multi-user.target
+Set executable rights to everyone:
+
+chmod 777 /etc/systemd/system/edi-cam.service
+Reload systemctl daemon:
+
+systemctl daemon-reload
+Start your service:
+
+systemctl start edi-cam.service
+Check service status:
+
+systemctl status
+systemctl status edi-cam.service
