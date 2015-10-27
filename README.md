@@ -147,28 +147,34 @@ there are few System Service Manager configuration files with .services extensio
 
 For example I will use openautomation service, please rename your file accordingly. Create a service config file /etc/systemd/system/edi-cam.service with structure like this:
 
-  [Unit]
-  Description=Open Automation Service
-  After=network.service
+    [Unit]
+    Description=Open Automation Service
+    After=network.service
+    [Service]
+    ExecStart=/bin/sh -c "/usr/bin/node /home/root/edi-cam/web/robotjs/server.js"
+    WorkingDirectory=/home/root/edi-cam/web/robotjs/node_modules/
+    Restart=always
+    RestartSec=5s
+    [Install]
+    WantedBy=multi-user.target
 
-  [Service]
-  ExecStart=/bin/sh -c "/usr/bin/node /home/root/edi-cam/web/robotjs/server.js"
-  WorkingDirectory=/home/root/edi-cam/web/robotjs/node_modules/
-  Restart=always
-  RestartSec=5s
+# Set executable rights to everyone:
 
-  [Install]
-  WantedBy=multi-user.target
-Set executable rights to everyone:
+    chmod 777 /etc/systemd/system/edi-cam.service
 
-chmod 777 /etc/systemd/system/edi-cam.service
-Reload systemctl daemon:
+# Reload systemctl daemon:
 
-systemctl daemon-reload
-Start your service:
+    systemctl daemon-reload
 
-systemctl start edi-cam.service
-Check service status:
+# Start your service:
 
-systemctl status
-systemctl status edi-cam.service
+    systemctl start edi-cam.service
+
+# Check service status:
+
+    systemctl status
+    systemctl status edi-cam.service
+
+# Enable service autostart feature:
+
+    systemctl enable edi-cam.service
