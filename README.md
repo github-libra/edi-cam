@@ -142,7 +142,8 @@ Open a browser window and navigate to `http://myedison.local:8080`, where `myedi
 
 Check folder /etc/systemd/system:
 
-ls -l /etc/systemd/system/*.service
+    ls -l /etc/systemd/system/*.service
+    
 there are few System Service Manager configuration files with .services extension
 
 For example I will use openautomation service, please rename your file accordingly. Create a service config file /etc/systemd/system/edi-cam.service with structure like this:
@@ -158,23 +159,23 @@ For example I will use openautomation service, please rename your file according
     [Install]
     WantedBy=multi-user.target
 
-# Set executable rights to everyone:
+#### Set executable rights to everyone:
 
     chmod 777 /etc/systemd/system/edi-cam.service
 
-# Reload systemctl daemon:
+#### Reload systemctl daemon:
 
     systemctl daemon-reload
 
-# Start your service:
+#### Start your service:
 
     systemctl start edi-cam.service
 
-# Check service status:
+#### Check service status:
 
     systemctl status
     systemctl status edi-cam.service
 
-# Enable service autostart feature:
+#### Enable service autostart feature:
 
     systemctl enable edi-cam.service
