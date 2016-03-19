@@ -1,21 +1,19 @@
 $(function() {
 
     // CHANGE THIS TO THE APPROPRIATE WS ADDRESS
-    var wsUrl = 'ws://'+ window.document.location.hostname +':8084/';
+    var wsHost = 'ws://'+ window.document.location.hostname +':8084/';
 
     // Show loading notice
-    var canvas = document.getElementById('canvas-video');
+    var canvas = $('#canvas-video')[0];
     var ctx = canvas.getContext('2d');
     ctx.fillStyle = '#333';
     ctx.fillText('Loading...', canvas.width / 2 - 30, canvas.height / 3);
 
     // Start the player
-    var client = new WebSocket(wsUrl);
+    var client = new WebSocket(wsHost);
     var player = new jsmpeg(client, { canvas: canvas });
 
-
-    // var SERVER = window.document.location.hostname + ':8080';
-
+    // send move/rotate cmd to server
     $('.move').on('click', 'span', function(e) {
         var moveDirection = getMoveDirection($(e.target));
         $.post('/move', getCommand(moveDirection), function success() {
@@ -30,6 +28,12 @@ $(function() {
         })
     })
 
+    // update move-speed label
+    $('#move-speed').change(function(e) {
+        $('label[for="move-speed"]').text("move speed: " + this.value);
+    })
+
+    // helper fn
     function getMoveDirection(target) {
         //return degree, 0 is forward, 180 is backward, -1 is stop.
 
@@ -76,8 +80,9 @@ $(function() {
     }
 
     function getCommand(direction) {
-        console.log(direction);
-        var cmd = {};
+        var cmd = {
+            speed: $('#move-speed').val()
+        };
         if(direction === 'left' || direction === 'right' || direction === 'reset') {
             // rotate
             cmd.act = 'rotate';
@@ -87,6 +92,7 @@ $(function() {
             cmd.act = 'move';
             cmd.to = direction;
         }
+        console.log(cmd);
         return cmd;
     }
 })

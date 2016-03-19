@@ -2,13 +2,14 @@
 <html>
 <title>bb8</title>
 <meta lang="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="styles/style.css">
 
-<body>
+<body ontouchstart=""> <!-- make :active work on iOS -->
   <h1>Control Center</h1>
-  <canvas id="canvas-video" width="640" height="480"></canvas>
+  <canvas id="canvas-video"></canvas> <!-- size is decided by server -->
   <div class="controls">
-    <div class="move">
+    <div class="move disable-select">
       <span class="arrow up-left"></span>
       <span class="arrow up"></span>
       <span class="arrow up-right"></span>
@@ -19,13 +20,18 @@
       <span class="arrow down"></span>
       <span class="arrow right-down"></span>
     </div>
-    <div class="rotate">
+    <div class="rotate disable-select">
       <span class="unclock-wise"></span>
       <span class="reset"></span>
       <span class="clock-wise"></span>
     </div>
+    <div class="speed disable-select">
+      <label for="move-speed">move speed: 20</label>
+      <input id="move-speed" type="range" min="5" max="100" step="5" value="20"></input>
+    </div>
+    
   </div>
-  <script src="//cdn.bootcss.com/jquery/3.0.0-beta1/jquery.min.js"></script>
+  <script src="scripts/jquery-2.2.2.min.js"></script>
   <script src="scripts/jsmpg.js"></script>
   <script src="scripts/main.js"></script>
 </body>
