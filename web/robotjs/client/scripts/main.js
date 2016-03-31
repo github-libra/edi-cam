@@ -4,6 +4,7 @@ $(function() {
     $controls = $('.controls');
 
     $admin.click(function(e) {
+        if($controls.css('display') === 'block') return;
         var input = prompt('enter password to get control')
         input = String(input).trim();
         if(input.length && input === 'root') {
