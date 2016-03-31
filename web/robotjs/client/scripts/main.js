@@ -1,5 +1,16 @@
 $(function() {
 
+    $admin = $('#admin'),
+    $controls = $('.controls');
+
+    $admin.click(function(e) {
+        var input = prompt('enter password to get control')
+        input = String(input).trim();
+        if(input.length && input === 'root') {
+            $controls.show();
+        }
+    })
+
     // CHANGE THIS TO THE APPROPRIATE WS ADDRESS
     var wsHost = 'ws://'+ window.document.location.hostname +':8084/';
 

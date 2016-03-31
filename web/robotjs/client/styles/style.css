@@ -30,11 +30,11 @@ h1 {
 }
 
 canvas {
-  border: 1px solid black;
+  border: 1px solid #E5DEDE;
 }
 
 div.controls {
-  display: block;
+  display: none;
   padding: 5px;
   width: 450px;
   margin: 0 auto;

@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="styles/style.css">
 
 <body ontouchstart=""> <!-- make :active work on iOS -->
+  <button id="admin">control</button>
   <h1>Control Center</h1>
   <canvas id="canvas-video"></canvas> <!-- size is decided by server -->
   <div class="controls">
@@ -27,9 +28,8 @@
     </div>
     <div class="speed disable-select">
       <label for="move-speed">move speed: 20</label>
-      <input id="move-speed" type="range" min="5" max="100" step="5" value="20"></input>
+      <input id="move-speed" type="range" min="5" max="100" step="5" value="20">
     </div>
-    
   </div>
   <script src="scripts/jquery-2.2.2.min.js"></script>
   <script src="scripts/jsmpg.js"></script>
